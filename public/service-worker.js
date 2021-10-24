@@ -1,13 +1,13 @@
 const FILES_TO_CACHE = [
   "/",
-  "index.html",
-  "icons/icon-192x192.png",
-  "icons/icon-512x512.png",
-  "index.js",
-  "style.css",
-  "https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/materia/bootstrap.min.css",
-  "https://use.fontawesome.com/releases/v5.8.2/css/all.css",
-  "https://cdn.jsdelivr.net/npm/chart.js@2.8.0"
+  "./index.html",
+  "./icons/icon-192x192.png",
+  "./icons/icon-512x512.png",
+  "./index.js",
+  "./styles.css",
+  "./bootstrap.min.css",
+  "./font-awesome.min.css",
+  "./chart.js@2.8.0.js"
 ];
 
 const STATIC_CACHE = "static-cache-v1";
@@ -45,26 +45,14 @@ self.addEventListener("activate", event => {
   );
 });
 
-self.addEventListener("fetch", event => {
-  // non GET requests are not cached and requests to other origins are not cached
-  if (
-    event.request.method !== "GET" ||
-    !event.request.url.startsWith(self.location.origin)
-  ) {
-    event.respondWith(fetch(event.request));
-    return;
-  }
-
-  // handle runtime GET requests for data from /api routes
-  if (event.request.url.includes("/api/images")) {
-    // make network request and fallback to cache if network request fails (offline)
+self.addEventListener('fetch', (event) => {
+  if (event.request.url.includes('/api/')) {
     event.respondWith(
       caches.open(RUNTIME_CACHE).then(cache => {
-        return fetch(event.request)
-          .then(response => {
-            cache.put(event.request, response.clone());
-            return response;
-          })
+        return fetch(event.request).then(response => {
+          return cache.put(event.request, response.clone());
+          return response;
+        })
           .catch(() => caches.match(event.request));
       })
     );

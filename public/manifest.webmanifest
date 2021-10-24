@@ -1,6 +1,6 @@
 {
   "name": "Images App",
-  "short_name": "Images App",
+  "short_name": "Img",
   "icons": [
     {
       "src": "public/icons/icon-192x192.png",
