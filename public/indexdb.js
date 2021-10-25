@@ -1,5 +1,8 @@
 let db;
+//add atalas db
+
 const request = indexedDB.open("budget", 1);
+
 
 request.onupgradeneeded = event => {
   const db = event.target.result;
@@ -36,9 +39,9 @@ const checkDatabase = () => {
       })
       .then(response => response.json())
       .then(() => {
+
         const transaction = db.transaction(["pending"], "readwrite");
         const store = transaction.objectStore("pending");
-
         store.clear();
       });
     }

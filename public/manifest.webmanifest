@@ -1,6 +1,6 @@
 {
-  "name": "Images App",
-  "short_name": "Img",
+  "name": "Budget",
+  "short_name": "BImg",
   "icons": [
     {
       "src": "public/icons/icon-192x192.png",
