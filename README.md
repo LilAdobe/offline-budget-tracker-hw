@@ -13,5 +13,5 @@ Budgeting offline
 - [Github](https://github.com/LilAdobe/offline-budget-tracker-hw)
 - [Heroko](https://still-plains-30958.herokuapp.com/)
 
-<img src="assets/budget.png">
+<img src="assets/budget.PNG">
 
