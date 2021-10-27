@@ -27,7 +27,7 @@ self.addEventListener("install", event => {
 // self.addEventListener("activate", event => {
 //   const currentCaches = [STATIC_CACHE, RUNTIME_CACHE];
 //   event.waitUntil(
-//     caches
+//     cachesy
 //       .keys()
 //       .then(cacheNames => {
 //         // return array of cache names that are old to delete
@@ -50,7 +50,8 @@ self.addEventListener('fetch', (event) => {
   if (event.request.url.includes('/api/')) {
     event.respondWith(
       caches.open(RUNTIME_CACHE).then(cache => {
-        return fetch(event.request.url).then(response => {
+        return fetch(event.request.url)
+        .then(response => {
           if(response.status == 200){
             cache.put(event.request.url, response.clone());
 
